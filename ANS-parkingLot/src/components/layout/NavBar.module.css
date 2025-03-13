@@ -1,0 +1,27 @@
+
+
+    .navBar{
+        display:flex;
+       
+        background: rgba(255, 255, 255, 0.2); 
+        border: 1px solid rgba(255, 255, 255, 0.3); 
+        padding: 1em;
+        color: black;
+        height: 150px;
+    }
+    .menu {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .list{
+        display: flex;
+        list-style: none;
+        align-items:end;
+
+    }
+    img{
+        height: 100%;
+
+    }
