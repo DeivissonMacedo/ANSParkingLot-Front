@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import ParkingSpotCard from '../ParkingSpotCard';
+import ParkingSpotCard from '../CardMenu';
 import styles from './Home.module.css';
+import CardMenu from '../CardMenu';
+import carIcon from '../../img/parking-spot.png';
 
 function Home() {
   const [parkingSpaces, setParkingSpaces] = useState([]);
@@ -43,6 +45,12 @@ function Home() {
   };
 
   return (
+    <div>
+      <CardMenu
+      icon = {carIcon}
+      name = "Vagas"
+      page = "/about"
+      />
     <div className={styles.MainBox}>
       <h1>Vagas</h1>
       <div className={styles.parkingSpaces}>
@@ -56,6 +64,7 @@ function Home() {
           />
         ))}
       </div>
+    </div>
     </div>
   );
 }
