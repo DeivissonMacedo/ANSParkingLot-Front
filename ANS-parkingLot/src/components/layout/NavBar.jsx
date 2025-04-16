@@ -9,11 +9,11 @@ function NavBar(){
         <div className={styles .menu }>
             <ul className={styles.list}>
                 <li>
-                    <Link to ="/">Home</Link>
+                    <Link to ="/">Home </Link>
                 </li>
 
                 <li>
-                    <Link to ="/">Sobre</Link>
+                    <Link to ="/"> / Sobre</Link>
                 </li>
             </ul>
         </div>

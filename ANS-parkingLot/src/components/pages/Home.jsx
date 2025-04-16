@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import ParkingSpotCard from '../CardMenu';
+import ParkingSpotCard from '../ParkingSpotCard';
 import styles from './Home.module.css';
-import CardMenu from '../CardMenu';
 import carIcon from '../../img/parking-spot.png';
+import MainMenu from './MainMenu';
+
 
 function Home() {
   const [parkingSpaces, setParkingSpaces] = useState([]);
@@ -45,27 +46,11 @@ function Home() {
   };
 
   return (
-    <div>
-      <CardMenu
-      icon = {carIcon}
-      name = "Vagas"
-      page = "/about"
-      />
+   
     <div className={styles.MainBox}>
-      <h1>Vagas</h1>
-      <div className={styles.parkingSpaces}>
-        {parkingSpaces.map((space) => (
-          <ParkingSpotCard 
-          className={styles.parkingSpotCard}
-            key={space.parkingSpotNumber} 
-            parkingSpot={space} 
-            onDelete={handleDelete} 
-            onEdit={handleEdit} 
-          />
-        ))}
-      </div>
+      <MainMenu/>
     </div>
-    </div>
+    
   );
 }
 

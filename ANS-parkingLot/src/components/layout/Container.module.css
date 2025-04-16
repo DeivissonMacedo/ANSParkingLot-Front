@@ -4,7 +4,6 @@
         width: 1200px;
         display: flex;
         justify-content: space-between;
-        margin: 0 auto;
         flex-wrap: wrap;
     }
 
@@ -13,7 +12,7 @@
     }
 
     .start{
-        justify-content: start;
+        justify-content: center;
 
     }
 

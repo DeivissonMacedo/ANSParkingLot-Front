@@ -1,0 +1,37 @@
+.card {
+   
+        background: rgba(255, 255, 255, 0.8); 
+        border-radius: 8px; 
+        padding: 10px; 
+        margin: 10px; 
+        width: 200px; 
+        height: 100px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+        text-align: center;
+        justify-content: center;
+        align-items: center; 
+        
+       
+    
+  
+  }
+  .card:hover{
+    width: 202px; 
+    height: 102px;
+  
+    box-shadow: 0 4px 8px rgba(0, 255, 69, 0.2); 
+  }
+  .card h3 {
+    font-size: 0.8rem; 
+    margin: 0;
+}
+
+
+
+
+  .icon {
+    width: 85px; 
+    height: 85px; 
+  
+  }
+  

@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Container from './components/layout/Container';
+import Parking from './components/pages/Parking';
+import EmployeeTable from './components/pages/EmployeeTable';
 
 function App() {
   return (
@@ -13,7 +15,8 @@ function App() {
       <Container customClass="min-height">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/sobre" element={<About />} />
+          <Route path="/parking" element={<Parking/>} />
+          <Route path="/employees" element={<EmployeeTable/>} />
         </Routes>
       </Container>
       <Footer />

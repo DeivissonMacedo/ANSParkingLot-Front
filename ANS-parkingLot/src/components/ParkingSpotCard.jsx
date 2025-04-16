@@ -3,17 +3,35 @@ import styles from './ParkingSpotCard.module.css';
 import carIcon from '../img/parking-spot.png'; 
 
 const ParkingSpotCard = ({ parkingSpot, onDelete, onEdit }) => {
+  const vehicle = parkingSpot.vehicle;
+  const employee = vehicle?.employee;
+
   return (
     <div className={styles.card}>
       <img src={carIcon} alt="Carro" className={styles.carIcon} />
       <h3>Vaga: {parkingSpot.parkingSpotNumber}</h3>
-      <p>Nome: {parkingSpot.employeeName}</p>
-      <p>Matrícula: {parkingSpot.employeeRegistrationNumber}</p>
-      {parkingSpot.guest === "1" && <p>Visitante</p>}
-      <p>Veículo: {parkingSpot.modelVehicle}</p>
-      <p>Concessionária: {parkingSpot.brandVehicle}</p>
-      <p>Cor: {parkingSpot.colorVehicle}</p>
-      <p>Placa: {parkingSpot.licensePlateVehicle}</p>
+
+      {employee ? (
+        <>
+          <p>Nome: {employee.name}</p>
+          <p>Matrícula: {employee.employeeRegistrationNumber}</p>
+          {employee.gender === "Masculino" && <p>Visitante</p>}
+        </>
+      ) : (
+        <p>Funcionário não registrado</p>
+      )}
+
+      {vehicle ? (
+        <>
+          <p>Veículo: {vehicle.model}</p>
+          <p>Concessionária: {vehicle.brand}</p>
+          <p>Cor: {vehicle.color}</p>
+          <p>Placa: {vehicle.licensePlate}</p>
+        </>
+      ) : (
+        <p>Vaga livre</p>
+      )}
+
       <div className={styles.buttons}>
         <button onClick={() => onEdit(parkingSpot)}>Editar</button>
         <button onClick={() => onDelete(parkingSpot.parkingSpotNumber)}>Excluir</button>

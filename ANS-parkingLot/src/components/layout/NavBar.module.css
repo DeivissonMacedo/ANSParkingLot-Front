@@ -1,5 +1,6 @@
 
 
+
     .navBar{
         display:flex;
        
@@ -7,7 +8,7 @@
         border: 1px solid rgba(255, 255, 255, 0.3); 
         padding: 1em;
         color: black;
-        height: 150px;
+        height: 100px;
     }
     .menu {
         display:flex;
