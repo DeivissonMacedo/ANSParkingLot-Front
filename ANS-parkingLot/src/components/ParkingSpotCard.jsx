@@ -4,7 +4,7 @@ import carIcon from '../img/parking-spot.png';
 
 const ParkingSpotCard = ({ parkingSpot, onDelete, onEdit }) => {
   const vehicle = parkingSpot.vehicle;
-  const employee = vehicle?.employee;
+  const employee = parkingSpot?.employee;
 
   return (
     <div className={styles.card}>
@@ -13,8 +13,8 @@ const ParkingSpotCard = ({ parkingSpot, onDelete, onEdit }) => {
 
       {employee ? (
         <>
-          <p>Nome: {employee.name}</p>
-          <p>Matrícula: {employee.employeeRegistrationNumber}</p>
+          <p><strong>Nome:</strong> {employee.name}</p>
+          <p><strong>Matrícula:</strong> {employee.employeeRegistrationNumber}</p>
           {employee.gender === "Masculino" && <p>Visitante</p>}
         </>
       ) : (
@@ -23,18 +23,26 @@ const ParkingSpotCard = ({ parkingSpot, onDelete, onEdit }) => {
 
       {vehicle ? (
         <>
-          <p>Veículo: {vehicle.model}</p>
-          <p>Concessionária: {vehicle.brand}</p>
-          <p>Cor: {vehicle.color}</p>
-          <p>Placa: {vehicle.licensePlate}</p>
+          <p><strong>Veículo:</strong> {vehicle.model}</p>
+          <p><strong>Concessionária:</strong> {vehicle.brand}</p>
+          <p><strong>Cor:</strong> {vehicle.color}</p>
+          <p><strong>Placa:</strong> {vehicle.licensePlate}</p>
         </>
       ) : (
-        <p>Vaga livre</p>
+        <strong><p>Vaga livre</p></strong>
       )}
 
       <div className={styles.buttons}>
-        <button onClick={() => onEdit(parkingSpot)}>Editar</button>
-        <button onClick={() => onDelete(parkingSpot.parkingSpotNumber)}>Excluir</button>
+      {employee ? (
+        <>
+        <button className={styles.removeButton } onClick={() => onDelete(parkingSpot.parkingSpotNumber)}>Remover</button>
+        </>
+      ) : (
+        <button className={styles.cardButton} onClick={() => onEdit(parkingSpot)}>Adicionar Visitante</button>
+      )}
+        
+        
+        
       </div>
     </div>
   );

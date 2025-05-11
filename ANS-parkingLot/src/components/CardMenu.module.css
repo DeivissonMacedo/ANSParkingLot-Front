@@ -1,37 +1,47 @@
 .card {
-   
-        background: rgba(255, 255, 255, 0.8); 
-        border-radius: 8px; 
-        padding: 10px; 
-        margin: 10px; 
-        width: 200px; 
-        height: 100px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
-        text-align: center;
-        justify-content: center;
-        align-items: center; 
-        
-       
-    
-  
-  }
-  .card:hover{
-    width: 202px; 
-    height: 102px;
-  
-    box-shadow: 0 4px 8px rgba(0, 255, 69, 0.2); 
-  }
-  .card h3 {
-    font-size: 0.8rem; 
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 10px;
+  width: 200px;
+  height: 100px;
+
+  text-align: center;
+  border-bottom: solid;
+
+  transition: all 0.4s ease; /* Suaviza qualquer mudança */
+  cursor: pointer;
+  position: relative;
 }
 
+.card:hover {
 
+  background-color: rgba(255, 255, 255, 0.05); 
+}
 
+.card h3 {
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 0;
+  color: #f4f4f4;
+  margin-top: 15px;
+  transition: color 0.6s ease; /* Transição suave para a cor */
+  position: absolute;
+}
 
-  .icon {
-    width: 85px; 
-    height: 85px; 
-  
-  }
-  
+.card:hover h3 {
+  color: #00BFFF; 
+}
+
+.icon {
+  width: 85px;
+  height: 85px;
+  transition: filter 0.6s ease; 
+  filter: grayscale(0%);
+}
+
+.card:hover .icon {
+  filter: brightness(0) saturate(100%) invert(29%) sepia(98%) saturate(2800%) hue-rotate(185deg) brightness(93%) contrast(93%);
+}

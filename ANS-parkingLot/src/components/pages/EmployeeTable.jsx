@@ -9,6 +9,8 @@ const EmployeeTable = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [searchedEmployee, setSearchedEmployee] = useState(null);
+  const [searchedSpot, setSearchedSpot] = useState(null);
+
   const carouselRef = useRef(null);
 
   useEffect(() => {
@@ -104,20 +106,39 @@ const EmployeeTable = () => {
     }
   };
 
-  const handleSearch = () => {
-    if (!searchInput) return;
+const handleSearch = () => {
+  if (!searchInput) return;
 
-    fetch(`http://localhost:8080/employees/${searchInput}`)
-      .then(res => {
-        if (!res.ok) throw new Error('Funcionário não encontrado');
-        return res.json();
-      })
-      .then(data => setSearchedEmployee(data))
-      .catch(err => {
-        setSearchedEmployee(null);
-        alert(err.message);
-      });
-  };
+  fetch(`http://localhost:8080/employees/${searchInput}`)
+    .then(res => {
+      if (!res.ok) throw new Error('Funcionário não encontrado');
+      return res.json();
+    })
+    .then(data => {
+      setSearchedEmployee(data);
+      handleSearchSpot();  // Chama a função de busca de vaga depois de encontrar o funcionário
+    })
+    .catch(err => {
+      setSearchedEmployee(null);
+      alert(err.message);
+    });
+};
+
+const handleSearchSpot = () => {
+  fetch(`http://localhost:8080/parking-spot/employee/${searchInput}`)
+    .then(res => {
+      if (!res.ok) throw new Error('Vaga não encontrada');
+      return res.json();
+    })
+    .then(data => setSearchedSpot(data))
+    .catch(err => {
+      setSearchedSpot(null);
+      console.log(err.message);
+    });
+};
+
+
+  
 
   const groupEmployees = (list, groupSize) => {
     const groups = [];
@@ -168,6 +189,8 @@ const EmployeeTable = () => {
           <p><strong>Matrícula:</strong> {searchedEmployee.employeeRegistrationNumber}</p>
           <p><strong>Email:</strong> {searchedEmployee.email}</p>
           <p><strong>Celular:</strong> {searchedEmployee.cellphone}</p>
+          {searchedSpot?(<><p><strong>Vaga:</strong> {searchedSpot.parkingSpotNumber}</p></>):(<><p>Funcionario sem vaga cadastrada</p></>)}
+           <button onClick={() => openModal(searchedEmployee)} className={styles.cardButton}>  {searchedSpot ? <FaCar /> : <FaPlus />}</button>
         </div>
       )}
 

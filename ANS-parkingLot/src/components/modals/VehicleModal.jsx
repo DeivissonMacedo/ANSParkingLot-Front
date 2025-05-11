@@ -8,7 +8,7 @@ import {
 } from '../dialogs/DialogBox.jsx';
 
 import { FaCarAlt, FaPalette, FaKeyboard, FaIdCard } from 'react-icons/fa';
-import styles from './VehicleModal.module.css'; 
+import styles from './GenericModal.module.css'; 
 
 
 const VehicleModal = ({ isOpen, onClose, employee, onAddCar, onDeleteCar }) => {
@@ -67,10 +67,12 @@ const VehicleModal = ({ isOpen, onClose, employee, onAddCar, onDeleteCar }) => {
       <DialogContent>
         {employee.vehicle ? (
           <div className="space-y-2 text-sm text-gray-700">
-            <p><FaIdCard className="inline mr-2 text-teal-600" /><strong>Marca:</strong> {brand}</p>
-            <p><FaCarAlt className="inline mr-2 text-teal-600" /><strong>Modelo:</strong> {model}</p>
-            <p><FaKeyboard className="inline mr-2 text-teal-600" /><strong>Placa:</strong> {licensePlate}</p>
-            <p><FaPalette className="inline mr-2 text-teal-600" /><strong>Cor:</strong> {color}</p>
+          <p><FaIdCard className="inline mr-2" style={{ color: '#0056b3' }} /><strong style={{ color: '#0056b3' }}> Marca:</strong> {brand}</p>
+          <p><FaCarAlt className="inline mr-2" style={{ color: '#0056b3' }} /><strong style={{ color: '#0056b3' }}> Modelo:</strong> {model}</p>
+          <p><FaKeyboard className="inline mr-2" style={{ color: '#0056b3' }} /><strong style={{ color: '#0056b3' }}> Placa:</strong> {licensePlate}</p>
+          <p><FaPalette className="inline mr-2" style={{ color: '#0056b3' }} /><strong style={{ color: '#0056b3' }}> Cor:</strong> {color}</p>
+
+
 
             <button
               onClick={() => onDeleteCar(employee.vehicle.id)}

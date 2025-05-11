@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import ParkingSpotCard from '../ParkingSpotCard';
 import styles from './Parking.module.css';
+import GuestModal from '../modals/GuestModal';
 
 function Parking() {
   const [parkingSpaces, setParkingSpaces] = useState([]);
   const carouselRef = useRef(null);
+  const [selectedSpot, setSelectedSpot] = useState(null);
+  const [guestModalOpen, setGuestModalOpen] = useState(false);
+
 
   useEffect(() => {
     const fetchParkingSpaces = async () => {
@@ -40,13 +44,48 @@ function Parking() {
   };
 
   const handleEdit = (parkingSpot) => {
-    console.log(`Editando vaga: `, parkingSpot);
-    // lógica de edição futura
+  openGuestModal(parkingSpot);
   };
+
+  const openGuestModal = (spot) => {
+  setSelectedSpot(spot);
+  setGuestModalOpen(true);
+};
+
+const closeGuestModal = () => {
+  setSelectedSpot(null);
+  setGuestModalOpen(false);
+};
+
+const handleAddGuest = async ({ guestName, guestDocument, parkingSpotNumber }) => {
+  try {
+    const res = await fetch('http://localhost:8080/guests', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        guestName,
+        guestDocument,
+        parkingSpotNumber,
+      }),
+    });
+
+    if (!res.ok) throw new Error('Erro ao cadastrar convidado');
+    alert('Convidado cadastrado com sucesso!');
+    closeGuestModal();
+
+    // Atualizar vagas, se necessário
+    const updated = await fetch('http://localhost:8080/parking-spot');
+    const data = await updated.json();
+    setParkingSpaces(data);
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 
   const scroll = (direction) => {
     if (carouselRef.current) {
-      const scrollAmount = 300;
+      const scrollAmount = 500;
       carouselRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -58,7 +97,7 @@ function Parking() {
     <div className={styles.mainContainer}>
       <h1>Vagas</h1>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginRight:'50px' }}>
         <button
           onClick={() => scroll('left')}
           className={styles.cardButton}
@@ -67,17 +106,19 @@ function Parking() {
           ◀
         </button>
 
-        <div className={styles.carousel} ref={carouselRef}>
-          {parkingSpaces.map((space) => (
-            <div key={space.parkingSpotNumber} className={styles.card}>
-              <ParkingSpotCard
-                parkingSpot={space}
-                onDelete={handleDelete}
-                onEdit={handleEdit}
-              />
-            </div>
-          ))}
-        </div>
+            <div className={styles.carousel} ref={carouselRef}>
+      {parkingSpaces
+        .sort((a, b) => a.parkingSpotNumber - b.parkingSpotNumber)
+        .map((space) => (
+          <div key={space.parkingSpotNumber} className={styles.card}>
+            <ParkingSpotCard
+              parkingSpot={space}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+            />
+          </div>
+        ))}
+    </div>
 
         <button
           onClick={() => scroll('right')}
@@ -87,8 +128,20 @@ function Parking() {
           ▶
         </button>
       </div>
+     {/* Modal separado */}
+      <GuestModal
+      isOpen={guestModalOpen}
+      onClose={closeGuestModal}
+      parkingSpot={selectedSpot}
+      onAddGuest={handleAddGuest}
+    />
+
+
     </div>
   );
+
+  
+   
 }
 
 export default Parking;

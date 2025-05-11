@@ -1,11 +1,11 @@
 .card {
    
-        background: rgba(255, 255, 255, 0.8); 
+        background: #fff; 
         border-radius: 8px; 
         padding: 10px; 
         margin: 10px; 
         width: 250px; 
-        height: 300px;
+        height: 260px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
         text-align: left; 
         
@@ -22,11 +22,51 @@
     margin: 5px 0; 
 }
 
-.card button {
-    font-size: 0.8rem; 
-    padding: 5px 10px; 
-    margin-top: 5px;
+
+
+
+ .cardButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  font-size: 0.8rem; 
+  padding: 5px 10px; 
+  margin-top: 5px;
+ 
 }
+
+.cardButton:hover {
+  background-color: #0056b3;
+}
+
+.cardButton:active {
+  background-color: #003c80;
+}
+
+.removeButton {
+  background-color: #ff3b0a; /* vermelho vivo */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  font-size: 0.8rem; 
+  padding: 5px 10px; 
+  margin-top: 5px;
+}
+
+.removeButton:hover {
+  background-color: #cc2900; /* vermelho escuro */
+}
+
+.removeButton:active {
+  background-color: #801800; /* mais escuro ainda, como "pressionado" */
+}
+
+
 
   .carIcon {
     width: 50px; 

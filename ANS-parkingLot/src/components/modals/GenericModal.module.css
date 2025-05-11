@@ -70,20 +70,25 @@
     background-color: #003c80; 
   }
   
-  
-  .deleteButton {
-    background-color: #dc2626;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: background-color 0.2s, transform 0.1s;
-  }
-  
-  .deleteButton:hover {
-    background-color: #b91c1c;
-    transform: translateY(-1px);
-  }
+ .deleteButton {
+  background-color: #ff3b0a; /* vermelho vivo */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  font-size: 0.8rem; 
+  padding: 5px 10px; 
+  margin-top: 5px;
+}
+
+.deleteButton:hover {
+  background-color: #cc2900; /* vermelho escuro */
+}
+
+.deleteButton:active {
+  background-color: #801800; /* mais escuro ainda, como "pressionado" */
+}
   .buttonContainer {
     text-align: center;
   }
